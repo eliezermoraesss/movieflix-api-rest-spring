@@ -2,7 +2,6 @@ package com.devsuperior.movieflix.config;
 
 import java.util.Arrays;
 
-import org.hibernate.annotations.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;

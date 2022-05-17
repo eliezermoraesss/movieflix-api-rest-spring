@@ -2,31 +2,35 @@ package com.devsuperior.movieflix.dto;
 
 import java.io.Serializable;
 
-import com.devsuperior.movieflix.entities.Movie;
+import javax.validation.constraints.NotBlank;
+
 import com.devsuperior.movieflix.entities.Review;
-import com.devsuperior.movieflix.entities.User;
 
 public class ReviewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
+
+	@NotBlank(message = "Não é permitido texto vazio na avaliação")
 	private String text;
-	private User user;
-	private Movie movie;
-	
+	private Long movieId;
+	private UserDTO user;
+
 	public ReviewDTO() {
 	}
-	
+
+	public ReviewDTO(Long id, String text, Long movieId, UserDTO user) {
+		this.id = id;
+		this.text = text;
+		this.movieId = movieId;
+		this.user = user;
+	}
+
 	public ReviewDTO(Review review) {
 		this.id = review.getId();
 		this.text = review.getText();
-	}
-
-	public ReviewDTO(Long id, String text, User user, Movie movie) {
-		this.id = id;
-		this.text = text;
-		this.user = user;
-		this.movie = movie;
+		this.movieId = review.getMovie().getId();
+		this.user = new UserDTO(review.getUser());
 	}
 
 	public Long getId() {
@@ -45,19 +49,19 @@ public class ReviewDTO implements Serializable {
 		this.text = text;
 	}
 
-	public User getUser() {
+	public Long getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(Long movieId) {
+		this.movieId = movieId;
+	}
+
+	public UserDTO getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
-	}
-
-	public Movie getMovie() {
-		return movie;
-	}
-
-	public void setMovie(Movie movie) {
-		this.movie = movie;
 	}
 }

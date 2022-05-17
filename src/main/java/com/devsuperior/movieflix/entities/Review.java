@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,18 +25,18 @@ public class Review implements Serializable {
 	@Column(columnDefinition = "TEXT")
 	private String text;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "movie_id")
 	private Movie movie;
 	
 	public Review() {
 	}
 
-	public Review(Long id, String text, User user, Movie movie) {
+	public Review(Long id, String text, Movie movie, User user) {
 		super();
 		this.id = id;
 		this.text = text;
@@ -58,6 +59,14 @@ public class Review implements Serializable {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
 
 	public User getUser() {
 		return user;
@@ -65,14 +74,6 @@ public class Review implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Movie getMovie() {
-		return movie;
-	}
-
-	public void setMovie(Movie movie) {
-		this.movie = movie;
 	}
 
 	@Override
