@@ -1,6 +1,7 @@
 package com.devsuperior.movieflix.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
@@ -32,6 +33,13 @@ public class ReviewService {
 	public List<ReviewDTO> findAll() {
 		List<Review> list = reviewRepository.findAll();
 		return list.stream().map(x -> new ReviewDTO(x)).collect(Collectors.toList());
+	}
+	
+	@Transactional
+	public ReviewDTO findById(Long id) {
+		Optional<Review> obj = reviewRepository.findById(id);
+		Review entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+		return new ReviewDTO(entity);
 	}
 
 	@Transactional
