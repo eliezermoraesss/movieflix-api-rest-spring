@@ -43,3 +43,21 @@ For tests cases, you can check the API endpoints with Postman.<br>
 Obter o perfil do usuário logado
 
 ### GET /users/profile
+
+## Casos de uso<br>
+Efetuar login<br>
+[IN] O usuário anônimo informa seu email e senha<br>
+[OUT] O sistema informa um token válido<br>
+## Listar filmes<br>
+[OUT] O sistema apresenta uma listagem dos nomes de todos gêneros, bem como uma listagem paginada com título, subtítulo, ano e imagem dos filmes, ordenada alfabeticamente por título.
+[IN] O usuário visitante ou membro seleciona, opcionalmente, um gênero.<br>
+[OUT] O sistema apresenta a listagem atualizada, restringindo somente ao gênero selecionado.<br>
+## Visualizar detalhes do filme<br>
+[IN] O usuário visitante ou membro seleciona um filme<br>
+[OUT] O sistema informa título, subtítulo, ano, imagem e sinopse do filme, e também uma listagem dos textos das avaliações daquele filme juntamente com nome do usuário que fez cada avaliação.<br>
+[IN] O usuário membro informa, opcionalmente, um texto para avaliação do filme.<br>
+[OUT] O sistema apresenta os dados atualizados, já aparecendo também a avaliação feita pelo usuário.<br>
+<br>
+## Exceção 3.1 - Texto vazio<br>
+3.1.1. O sistema apresenta uma mensagem de que não é permitido texto vazio na avaliação <br>
+
